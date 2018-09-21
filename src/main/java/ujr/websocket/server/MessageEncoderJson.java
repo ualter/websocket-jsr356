@@ -8,7 +8,7 @@ import com.google.gson.Gson;
 
 import ujr.websocket.model.Message;
 
-public class MessageEncoder implements Encoder.Text<Message> {
+public class MessageEncoderJson implements Encoder.Text<Message> {
 
 	private static Gson gson = new Gson();
 

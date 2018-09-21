@@ -8,14 +8,11 @@ import com.google.gson.Gson;
 
 import ujr.websocket.model.Message;
 
-public class MessageDecoder implements Decoder.Text<Message> {
-
-    private static Gson gson = new Gson();
+public class MessageDecoderString implements Decoder.Text<String> {
 
     @Override
-    public Message decode(String s) throws DecodeException {
-        Message message = gson.fromJson(s, Message.class);
-        return message;
+    public String decode(String s) throws DecodeException {
+        return s;
     }
 
     @Override

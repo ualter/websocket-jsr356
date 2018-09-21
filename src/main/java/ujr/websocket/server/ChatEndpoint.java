@@ -16,7 +16,8 @@ import javax.websocket.server.ServerEndpoint;
 
 import ujr.websocket.model.Message;
 
-@ServerEndpoint(value = "/chat/{username}", decoders = MessageDecoder.class, encoders = MessageEncoder.class)
+@ServerEndpoint(value = "/chat/{username}", decoders = MessageDecoderJson.class, encoders = MessageEncoderJson.class)
+//@ServerEndpoint(value = "/chat/{username}", decoders = MessageDecoderString.class, encoders = MessageEncoderString.class)
 public class ChatEndpoint {
 
 	private Session session;
@@ -40,6 +41,15 @@ public class ChatEndpoint {
 		}
 	}
 
+	/*@OnMessage
+	public void onMessage(Session session, String message) {
+		try {
+			broadcast(message);
+		} catch (EncodeException | IOException e) {
+			throw new RuntimeException(e);
+		}
+	}*/
+	
 	@OnMessage
 	public void onMessage(Session session, Message message) throws IOException {
 		message.setFrom(users.get(session.getId()));
@@ -67,7 +77,7 @@ public class ChatEndpoint {
 
 	@OnError
 	public void onError(Session session, Throwable throwable) {
-		// Do error handling here
+		throw new RuntimeException(throwable);
 	}
 
 	private static void broadcast(Message message) throws IOException, EncodeException {
@@ -81,5 +91,17 @@ public class ChatEndpoint {
 			}
 		});
 	}
+	
+	/*private static void broadcast(String message) throws IOException, EncodeException {
+		chatEndpoints.forEach(endpoint -> {
+			synchronized (endpoint) {
+				try {
+					endpoint.session.getBasicRemote().sendObject(message);
+				} catch (IOException | EncodeException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}*/
 
 }
