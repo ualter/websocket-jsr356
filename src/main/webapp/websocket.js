@@ -1,4 +1,5 @@
 var ws;
+var wsXp;
 
 function connect() {
     var username = document.getElementById("username").value;
@@ -23,4 +24,33 @@ function send() {
     });
 
     ws.send(json);
+}
+
+function connectXPlane() {
+    var host = document.location.host;
+    var pathname = document.location.pathname;
+    
+    wsXp = new WebSocket("ws://" + host  + pathname + "xplane/");
+
+    wsXp.onmessage = function(event) {
+    	var log = document.getElementById("logXPlane");
+        console.log(event.data);
+        var message = event.data;
+        log.innerHTML += message + "\n";
+    };
+}
+
+function sendXPlane() {
+    var content = document.getElementById("xplaneMessage").value;
+    wsXp.send(content);
+}
+
+function info1() {
+	var str = "{\n" +
+              "   \"messageId\":\"0\",\n" +
+              "   \"lat\":\"41.549833\",\n" +
+              "   \"lng\":\"2.0989322\"\n" +
+              "}\n";
+	var log = document.getElementById("xplaneMessage");
+	log.innerHTML = str + "\n";
 }

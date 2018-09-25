@@ -16,7 +16,7 @@ import javax.websocket.server.ServerEndpoint;
 
 import ujr.websocket.model.Message;
 
-@ServerEndpoint(value = "/chat/{username}", decoders = MessageDecoderJson.class, encoders = MessageEncoderJson.class)
+//@ServerEndpoint(value = "/chat/{username}", decoders = MessageDecoderJson.class, encoders = MessageEncoderJson.class)
 //@ServerEndpoint(value = "/chat/{username}", decoders = MessageDecoderString.class, encoders = MessageEncoderString.class)
 public class ChatEndpoint {
 
