@@ -3,7 +3,7 @@
         <title>Chat</title>
     </head>
     <body>
-
+    	<!-- 
         <table>
             <tr>
                 <td colspan="2">
@@ -26,6 +26,7 @@
         <br><br>
         <hr>
         <br><br>
+         -->
         <table>
         	<tr>
         		<td colspan="3">
@@ -34,8 +35,12 @@
         	</tr>
         	<tr><td>&nbsp;</td></tr>
         	<tr>
-        		<td><font style="font-family:Arial;font-size:12px;">Message to send...:</font><br>
-        		<textarea rows="10" cols="80" id="xplaneMessage">{
+        		<td>
+        			<table>
+        				<tr>
+        					<td>
+        						<font style="font-family:Arial;font-size:12px;">Message to send...:</font><br>
+        		<textarea rows="10" cols="50" id="xplaneMessage">{
    "messageId":"0",
    "lat":"1",
    "lng":"2"
@@ -45,13 +50,40 @@
                     <button type="button" onclick="send();" >Info 2</button>&nbsp;
                     <button type="button" onclick="send();" >Info 3</button>&nbsp;
                     <button type="button" onclick="send();" >Info 4</button>
+        					</td>
+        					<td align="center">
+        						<table border=1>
+        							<tr>
+        								<td align="middle">
+        									<button type="button" onclick="goNorthwest();">Northwest</button>
+        									<button type="button" onclick="goNorth();">North</button>
+        									<button type="button" onclick="goNortheast();">Northeast</button>
+        								</td>
+        							</tr>
+        							<tr>
+        								<td align="middle">
+        									<button type="button" onclick="goWest();">West</button>&nbsp;
+        									<button type="button" onclick="goEast();">East</button>&nbsp;
+        								</td>
+        							</tr>
+        							<tr>
+        								<td align="middle">
+        									<button type="button" onclick="goSouthwest();">Southwest</button>
+        									<button type="button" onclick="goSouth();">South</button>
+        									<button type="button" onclick="goSoutheast();">Southeast</button>
+        								</td>
+        							</tr>
+        						</table>
+        					</td>
+        				</tr>
+        			</table>
         		</td>
         	</tr>
         	<tr><td>&nbsp;</td></tr>
         	<tr>
                 <td colspan="3">
                 	<font style="font-family:Arial;font-size:12px;">Received...:</font><br>
-                    <textarea readonly="true" rows="10" cols="80" id="logXPlane"></textarea>
+                    <textarea readonly="true" rows="10" cols="50" id="logXPlane"></textarea>
                 </td>
             </tr>
         </table>

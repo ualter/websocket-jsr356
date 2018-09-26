@@ -1,5 +1,7 @@
 var ws;
 var wsXp;
+var lat = 41.5497669;
+var lng = 2.0989116;
 
 function connect() {
     var username = document.getElementById("username").value;
@@ -48,9 +50,56 @@ function sendXPlane() {
 function info1() {
 	var str = "{\n" +
               "   \"messageId\":\"0\",\n" +
-              "   \"lat\":\"41.549833\",\n" +
-              "   \"lng\":\"2.0989322\"\n" +
+              "   \"lat\":\"41.5497669\",\n" +
+              "   \"lng\":\"2.0989116\"\n" +
               "}\n";
 	var log = document.getElementById("xplaneMessage");
 	log.innerHTML = str + "\n";
+}
+
+function sendLocation() {
+	var str = "{\n" +
+    "   \"messageId\":\"0\",\n" +
+    "   \"lat\":\""+ lat + "\",\n" +
+    "   \"lng\":\""+ lng + "\"\n" +
+    "}\n";
+	wsXp.send(str);
+}
+
+function goNorth() {
+	lat += 0.001;
+	sendLocation();
+}
+function goNorthwest() {
+	lat += 0.001;
+	lng -= 0.001;
+	sendLocation();
+}
+function goNortheast() {
+	lat += 0.001;
+	lng += 0.001;
+	sendLocation();
+}
+function goSouth() {
+	lat -= 0.001;
+	sendLocation();
+}
+function goSouthwest() {
+	lat -= 0.001;
+	lng -= 0.001;
+	sendLocation();
+}
+function goSoutheast() {
+	lat -= 0.001;
+	lng += 0.001;
+	sendLocation();
+}
+
+function goEast() {
+	lng += 0.001;
+	sendLocation();
+}
+function goWest() {
+	lng -= 0.001;
+	sendLocation();
 }
